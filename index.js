@@ -23,7 +23,10 @@ app.get("/form", (req, res)=>{
     res.render("form", {});
 });
 app.post("/process", (req, res)=>{
-    res.render("process", {});
+    
+    res.render("process", {
+        name: req.name
+    });
 });
 app.get('/about', function (req, res) {
     res.render('about', {
