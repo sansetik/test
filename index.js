@@ -11,7 +11,19 @@ app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
  
 app.get('/', function (req, res) {
-    res.render('home');
+    res.render('home',{
+        title: "ITBLOG - лучший айти портал ",
+        players: [
+            {name: "Alex", age: 23, nubmer: 001},
+            {name: "Galya", age: 20, nubmer: 002}
+        ]
+    });
+});
+app.get("/form", (req, res)=>{
+    res.render("form", {});
+});
+app.post("/process", (req, res)=>{
+    res.render("process", {});
 });
 app.get('/about', function (req, res) {
     res.render('about', {
