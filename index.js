@@ -1,5 +1,6 @@
 let express = require("express");
 let handlebars = require("express-handlebars");
+let bodyParser = require('body-parser');
 
 
 
@@ -9,7 +10,9 @@ let hbs =  handlebars.create({defaultLayout: 'main', extname: "hbs"});
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
- 
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.get('/', function (req, res) {
     res.render('home',{
         title: "ITBLOG - лучший айти портал ",
@@ -25,7 +28,7 @@ app.get("/form", (req, res)=>{
 app.post("/process", (req, res)=>{
     
     res.render("process", {
-        name: req.name
+        name: 1
     });
 });
 app.get('/about', function (req, res) {
