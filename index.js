@@ -3,6 +3,8 @@ let handlebars = require("express-handlebars");
 let bodyParser = require("body-parser");
 let formidable = require("formidable");
 let fs = require("fs");
+const path = require("path");
+
 
 
 let app = express();
@@ -10,7 +12,7 @@ let hbs =  handlebars.create({defaultLayout: 'main', extname: "hbs"});
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
-
+app.use(express.static('files/2'));
 
 /*
 // Certificate
@@ -40,16 +42,25 @@ app.get('/', function (req, res) {
 app.get("/form", (req, res)=>{
     res.render("form", {});
 });
+let photourl1 = "String";
 app.post("/process", (req, res)=>
 {
     let form = new formidable.IncomingForm();
-    form.parse(req, (err, fields, files)=>
+    form.parse(req, async (err, fields, files)=>
     {
-        console.log("Фиелдс: " + fields);
-        console.log("this is: " + files);            
-        colsole.log(files.photo);
+        await fs.rename(files.photo.path,  path.join(__dirname,"files","2",files.photo.name), ()=>{
+            photourl1 = path.join(__dirname,"files","2",files.photo.name);
+        });
+        
+        res.redirect(303, "/photo");
     });
     
+});
+app.get("/photo", (req, res)=>{
+    res.render("photo", {
+        photourl: photourl1
+    });
+    console.log(photourl1);
 });
 app.get('/about', function (req, res) {
     res.render('about', {
