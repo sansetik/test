@@ -1,9 +1,14 @@
-let express = require("express");
-let handlebars = require("express-handlebars");
-let bodyParser = require("body-parser");
-let formidable = require("formidable");
-let fs = require("fs");
+const express = require("express");
+const handlebars = require("express-handlebars");
+const bodyParser = require("body-parser");
+const formidable = require("formidable");
+const fs = require("fs");
 const path = require("path");
+const cookieParser = require('cookie-parser');
+
+
+
+
 
 
 
@@ -12,7 +17,10 @@ let hbs =  handlebars.create({defaultLayout: 'main', extname: "hbs"});
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
-app.use(express.static('files/2'));
+app.use(express.static(__dirname + '/files'));
+app.use(cookieParser("fdsf5ds4fe88e4e4e4e8e8"));
+
+
 
 /*
 // Certificate
@@ -29,8 +37,20 @@ const credentials = {
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use((req, res, next)=>{
+    console.log("Клиент залупа: "  + req.url)
+    if(req.url == "/suka")
+    {
+        res.send("Вы попали на страницу суки")
+    }
+    else{
+        next()
+    }
+    
+})
 app.get('/', function (req, res) {
+    res.cookie('name', 'express');
+    
     res.render('home',{
         title: "ITBLOG - лучший айти портал ",
         players: [
@@ -49,7 +69,7 @@ app.post("/process", (req, res)=>
     form.parse(req, async (err, fields, files)=>
     {
         await fs.rename(files.photo.path,  path.join(__dirname,"files","2",files.photo.name), ()=>{
-            photourl1 = path.join(__dirname,"files","2",files.photo.name);
+            photourl1 = files.photo.name;
         });
         
         res.redirect(303, "/photo");
