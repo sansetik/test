@@ -1,5 +1,9 @@
-<h1>Список</h1>
+{{#if logged}}
+<span>{{login}} </span>
+<a href="/cabinet"> Личный кабинет</a>
+<div><a href="/exit">Выйти</a></div>
+{{else}}
+Вы не войшли <a href="/vhod">Войти</a>
+{{/if}}
 
-{{#each players}}   
-    <h2>{{name}} . {{../title}} <br></h2>
-{{/each}}
+

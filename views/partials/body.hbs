@@ -1,1 +1,63 @@
-{{{body}}}
+<div class="main">
+    <section class="header">
+        <div class="box_header">
+
+        </div>
+        <div class="head_head">
+            <div class="head_content">
+                <div class="logo">
+                    <a href="/"><img src="/img/logotype.svg" alt=""></a>
+                </div>
+                <div class="ad">
+                    <a href="/"><img src="/img/banner.jpg" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="pod_menu">
+                {{#if IsHome}}
+                    <div class="home" class="first_tag" id="activ"><a href="/">ДОМОЙ</a></div>
+                {{else}}
+                    <div class="home" id="first_tag"><a href="/">ДОМОЙ</a></div>
+                {{/if}}
+
+                {{#if IsNews}}
+                    <div class="news" id="activ"><a href="/news">НОВОСТИ</a></div>
+                {{else}}
+                    <div class="news"><a href="/news">НОВОСТИ</a></div>
+                {{/if}}
+
+                {{#if IsUtiliti}}
+                    <div class="utiliti" id="activ"><a href="/utiliti">УТИЛИТЫ</a></div>
+                {{else}}
+                   <div class="utiliti"><a href="/utiliti">УТИЛИТЫ</a></div>
+                {{/if}}
+
+                {{#if IsStatii}}
+                    <div class="statii" id="activ"><a href="/statii">СТАТЬИ</a></div>
+                {{else}}
+                    <div class="statii"><a href="/statii">СТАТЬИ</a></div>
+                {{/if}}
+
+
+                {{#if IsUslugi}}
+                    <div class="uslugi" id="activ"><a href="/uslugi">УСЛУГИ</a></div>
+                {{else}}
+                    <div class="uslugi"><a href="/uslugi">УСЛУГИ</a></div>
+                {{/if}}
+                
+                
+                
+                
+                
+            </div>
+            
+        </div>
+    </section>
+    <section class="content">
+
+    </section>
+    <section class="footer">
+
+    </section>
+</div>
